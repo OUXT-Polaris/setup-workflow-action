@@ -5,7 +5,7 @@ var SetupTool = /** @class */ (function () {
     function SetupTool(template_path, parameters) {
         this.template_path_ = template_path;
         this.parameters_ = parameters;
-        var obj = JSON.parse(this.parameters_);
+        this.parameters_json = JSON.parse(this.parameters_);
     }
     Object.defineProperty(SetupTool.prototype, "template_path", {
         get: function () {
@@ -14,6 +14,8 @@ var SetupTool = /** @class */ (function () {
         enumerable: false,
         configurable: true
     });
+    SetupTool.prototype.replace = function (key, value) {
+    };
     return SetupTool;
 }());
 exports.SetupTool = SetupTool;
