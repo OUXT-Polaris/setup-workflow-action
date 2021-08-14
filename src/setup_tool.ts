@@ -58,6 +58,7 @@ export class SetupTool {
     this.makeDirectory(this.project_path_ + "/.github/workflows");
     const path = require("path");
     const filename = path.basename(this.template_path_);
+    const workflow_name = path.basename(this.template_path_, ".yaml");
     fs.writeFileSync(
       this.project_path_ + "/.github/workflows/" + filename,
       this.workflow_string_

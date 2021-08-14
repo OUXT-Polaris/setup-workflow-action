@@ -78,6 +78,7 @@ var SetupTool = /** @class */ (function () {
         this.makeDirectory(this.project_path_ + "/.github/workflows");
         var path = require("path");
         var filename = path.basename(this.template_path_);
+        var workflow_name = path.basename(this.template_path_, ".yaml");
         fs.writeFileSync(this.project_path_ + "/.github/workflows/" + filename, this.workflow_string_);
     };
     return SetupTool;
