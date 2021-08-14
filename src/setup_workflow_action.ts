@@ -1,4 +1,5 @@
 import { getInput, setFailed } from "@actions/core";
+import { SetupTool } from "./setup_tool";
 
 async function main() {
   try {
