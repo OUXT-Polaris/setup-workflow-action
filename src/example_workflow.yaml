@@ -1,0 +1,16 @@
+name: example_workflow
+
+on:
+  schedule:
+    - cron: 0 0 * * *
+  push:
+  workflow_dispatch:
+
+jobs:
+  job1:
+    name: Build
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/hello-world-javascript-action@main
+      with:
+        who-to-greet: {{ parameter.who-to-greet }}
