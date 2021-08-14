@@ -22,4 +22,4 @@ jobs:
         uses: ./
         with:
           template: ./src/example_workflow.yaml
-          parameters: "{ who-to-greet : octcat }"
+          parameters: "{ \"who-to-greet\" : \"octcat\" }"
