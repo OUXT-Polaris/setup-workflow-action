@@ -11,6 +11,7 @@ async function main() {
     console.log("===== Workflow =====");
     console.log(tool.workflow_string);
     console.log("===== Workflow =====");
+    tool.setup();
   } catch (error) {
     setFailed(error.message);
   }

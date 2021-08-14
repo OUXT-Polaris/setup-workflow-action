@@ -51,6 +51,7 @@ function main() {
                 console.log("===== Workflow =====");
                 console.log(tool.workflow_string);
                 console.log("===== Workflow =====");
+                tool.setup();
             }
             catch (error) {
                 core_1.setFailed(error.message);
