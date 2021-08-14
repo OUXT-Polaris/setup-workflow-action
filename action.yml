@@ -1,5 +1,5 @@
-name: 'update-repos-action'
-description: 'javascript action for updating repos file in ROS.'
+name: 'setup-workflow-action'
+description: 'javascript action for setting up github actions workflow.'
 author: 'Masaya Kataoka'
 branding:
   icon: "arrow-right"
