@@ -35,9 +35,21 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = require("@actions/core");
 function main() {
-    return __awaiter(this, void 0, void 0, function () { return __generator(this, function (_a) {
-        return [2 /*return*/];
-    }); });
+    return __awaiter(this, void 0, void 0, function () {
+        var template, parameters;
+        return __generator(this, function (_a) {
+            try {
+                template = core_1.getInput("template");
+                parameters = core_1.getInput("parameters");
+            }
+            catch (error) {
+                core_1.setFailed(error.message);
+            }
+            return [2 /*return*/];
+        });
+    });
 }
 main();
