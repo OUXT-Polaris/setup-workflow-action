@@ -12,6 +12,9 @@ inputs:
     required: false
     description: 'parameters described in workflow $parameter.key in json format {key, value}'
     default: '{}'
+  project_path:
+    required: true
+    description: 'path to the git project you want to setup your workflow'
 runs:
   using: 'node12'
   main: 'dist/setup_workflow_action.js'

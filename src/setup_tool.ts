@@ -1,6 +1,4 @@
 import * as fs from "fs";
-import { type } from "os";
-import { stringify } from "querystring";
 
 export class SetupTool {
   private template_path_: string;
@@ -15,6 +13,18 @@ export class SetupTool {
 
   public get workflow_string(): string {
     return this.workflow_string_;
+  }
+
+  private project_path_: string;
+
+  public get project_path(): string {
+    return this.project_path_;
+  }
+
+  private makeDirectory(path: string) {
+    if (!fs.existsSync(path)) {
+      fs.mkdirSync(path);
+    }
   }
 
   private replace(key: string, value: any) {
@@ -43,10 +53,13 @@ export class SetupTool {
     }
   }
 
-  constructor(template_path: string, parameters: string) {
+  constructor(template_path: string, parameters: string, project_path: string) {
     this.template_path_ = template_path;
     this.parameters_ = parameters;
+    this.project_path_ = project_path;
     this.workflow_string_ = fs.readFileSync(this.template_path_, "utf8");
     this.replaceAll(JSON.parse(this.parameters_));
+    this.makeDirectory(this.project_path_+"/.github")
+    this.makeDirectory(this.project_path_+"/.github/workflows")
   }
 }
