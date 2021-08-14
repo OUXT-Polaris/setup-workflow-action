@@ -21,5 +21,5 @@ jobs:
       - name: test run
         uses: ./
         with:
-          template:
+          template: ./src/example_workflow.yaml
           parameters: "{ who-to-greet : octcat }"
