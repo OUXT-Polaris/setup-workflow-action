@@ -53,13 +53,22 @@ export class SetupTool {
     }
   }
 
+  public setup() {
+    this.makeDirectory(this.project_path_ + "/.github");
+    this.makeDirectory(this.project_path_ + "/.github/workflows");
+    const path = require("path");
+    const filename = path.basename(this.template_path_);
+    fs.writeFileSync(
+      this.project_path_ + "/.github/workflows/" + filename,
+      this.workflow_string_
+    );
+  }
+
   constructor(template_path: string, parameters: string, project_path: string) {
     this.template_path_ = template_path;
     this.parameters_ = parameters;
     this.project_path_ = project_path;
     this.workflow_string_ = fs.readFileSync(this.template_path_, "utf8");
     this.replaceAll(JSON.parse(this.parameters_));
-    this.makeDirectory(this.project_path_ + "/.github");
-    this.makeDirectory(this.project_path_ + "/.github/workflows");
   }
 }

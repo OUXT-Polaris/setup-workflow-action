@@ -28,8 +28,6 @@ var SetupTool = /** @class */ (function () {
         this.project_path_ = project_path;
         this.workflow_string_ = fs.readFileSync(this.template_path_, "utf8");
         this.replaceAll(JSON.parse(this.parameters_));
-        this.makeDirectory(this.project_path_ + "/.github");
-        this.makeDirectory(this.project_path_ + "/.github/workflows");
     }
     Object.defineProperty(SetupTool.prototype, "template_path", {
         get: function () {
@@ -74,6 +72,13 @@ var SetupTool = /** @class */ (function () {
             }
             this.replace(key, value);
         }
+    };
+    SetupTool.prototype.setup = function () {
+        this.makeDirectory(this.project_path_ + "/.github");
+        this.makeDirectory(this.project_path_ + "/.github/workflows");
+        var path = require("path");
+        var filename = path.basename(this.template_path_);
+        fs.writeFileSync(this.project_path_ + "/.github/workflows/" + filename, this.workflow_string_);
     };
     return SetupTool;
 }());
