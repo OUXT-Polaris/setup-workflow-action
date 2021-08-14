@@ -48,7 +48,9 @@ function main() {
                 parameters = core_1.getInput("parameters");
                 project_path = core_1.getInput("project_path");
                 tool = new setup_tool_1.SetupTool(template, parameters, project_path);
+                console.log("===== Workflow =====");
                 console.log(tool.workflow_string);
+                console.log("===== Workflow =====");
             }
             catch (error) {
                 core_1.setFailed(error.message);
