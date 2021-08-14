@@ -19,12 +19,14 @@ export class SetupTool {
 
   private replace(key: string, value: any) {
     const replace_string = "$parameter." + key;
-    this.workflow_string_.replace(replace_string, value);
+    this.workflow_string_ = this.workflow_string_.replace(
+      replace_string,
+      value
+    );
   }
 
   private replaceAll(json: JSON) {
     for (const [key, value] of Object.entries(json)) {
-      console.log(`${key}: ${value}`);
       if (typeof key != "string") {
         throw new Error("key of the parameter should be string");
       }
