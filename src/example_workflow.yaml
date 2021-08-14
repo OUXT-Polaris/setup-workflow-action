@@ -13,4 +13,4 @@ jobs:
     steps:
     - uses: actions/hello-world-javascript-action@main
       with:
-        who-to-greet: {{ parameter.who-to-greet }}
+        who-to-greet: $parameter.who-to-greet

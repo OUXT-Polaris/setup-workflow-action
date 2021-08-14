@@ -10,7 +10,7 @@ inputs:
     description: 'path to the template workflow'
   parameters:
     required: false
-    description: 'parameters described in workflow {{ parameter.key }} in json format {key, value}'
+    description: 'parameters described in workflow $parameter.key in json format {key, value}'
     default: '{}'
 runs:
   using: 'node12'
