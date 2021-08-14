@@ -21,6 +21,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SetupTool = void 0;
 var fs = __importStar(require("fs"));
+var path = __importStar(require("path"));
 var SetupTool = /** @class */ (function () {
     function SetupTool(template_path, parameters, project_path) {
         this.template_path_ = template_path;
@@ -55,6 +56,7 @@ var SetupTool = /** @class */ (function () {
             fs.mkdirSync(path);
         }
     };
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     SetupTool.prototype.replace = function (key, value) {
         var replace_string = "$parameter." + key;
         this.workflow_string_ = this.workflow_string_.replace(replace_string, value);
@@ -76,9 +78,7 @@ var SetupTool = /** @class */ (function () {
     SetupTool.prototype.setup = function () {
         this.makeDirectory(this.project_path_ + "/.github");
         this.makeDirectory(this.project_path_ + "/.github/workflows");
-        var path = require("path");
         var filename = path.basename(this.template_path_);
-        var workflow_name = path.basename(this.template_path_, ".yaml");
         fs.writeFileSync(this.project_path_ + "/.github/workflows/" + filename, this.workflow_string_);
     };
     return SetupTool;

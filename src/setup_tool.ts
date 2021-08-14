@@ -1,4 +1,5 @@
 import * as fs from "fs";
+import * as path from "path";
 
 export class SetupTool {
   private template_path_: string;
@@ -27,6 +28,7 @@ export class SetupTool {
     }
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private replace(key: string, value: any) {
     const replace_string = "$parameter." + key;
     this.workflow_string_ = this.workflow_string_.replace(
@@ -53,12 +55,10 @@ export class SetupTool {
     }
   }
 
-  public setup() {
+  public setup(): void {
     this.makeDirectory(this.project_path_ + "/.github");
     this.makeDirectory(this.project_path_ + "/.github/workflows");
-    const path = require("path");
     const filename = path.basename(this.template_path_);
-    const workflow_name = path.basename(this.template_path_, ".yaml");
     fs.writeFileSync(
       this.project_path_ + "/.github/workflows/" + filename,
       this.workflow_string_
