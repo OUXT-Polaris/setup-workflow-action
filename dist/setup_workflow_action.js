@@ -37,13 +37,18 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@actions/core");
+var setup_tool_1 = require("./setup_tool");
 function main() {
     return __awaiter(this, void 0, void 0, function () {
-        var template, parameters;
+        var template, parameters, project_path, tool;
         return __generator(this, function (_a) {
             try {
+                console.log("start setting up workflow");
                 template = core_1.getInput("template");
                 parameters = core_1.getInput("parameters");
+                project_path = core_1.getInput("project_path");
+                tool = new setup_tool_1.SetupTool(template, parameters, project_path);
+                console.log(tool.workflow_string);
             }
             catch (error) {
                 core_1.setFailed(error.message);

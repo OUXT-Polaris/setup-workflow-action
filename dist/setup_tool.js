@@ -22,12 +22,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.SetupTool = void 0;
 var fs = __importStar(require("fs"));
 var SetupTool = /** @class */ (function () {
-    function SetupTool(template_path, parameters) {
+    function SetupTool(template_path, parameters, project_path) {
         this.template_path_ = template_path;
         this.parameters_ = parameters;
+        this.project_path_ = project_path;
         this.workflow_string_ = fs.readFileSync(this.template_path_, "utf8");
         this.replaceAll(JSON.parse(this.parameters_));
-        console.log(this.workflow_string_);
+        this.makeDirectory(this.project_path_ + "/.github");
+        this.makeDirectory(this.project_path_ + "/.github/workflows");
     }
     Object.defineProperty(SetupTool.prototype, "template_path", {
         get: function () {
@@ -43,6 +45,18 @@ var SetupTool = /** @class */ (function () {
         enumerable: false,
         configurable: true
     });
+    Object.defineProperty(SetupTool.prototype, "project_path", {
+        get: function () {
+            return this.project_path_;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    SetupTool.prototype.makeDirectory = function (path) {
+        if (!fs.existsSync(path)) {
+            fs.mkdirSync(path);
+        }
+    };
     SetupTool.prototype.replace = function (key, value) {
         var replace_string = "$parameter." + key;
         this.workflow_string_ = this.workflow_string_.replace(replace_string, value);
