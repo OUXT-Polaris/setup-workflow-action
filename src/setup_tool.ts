@@ -59,7 +59,7 @@ export class SetupTool {
     this.project_path_ = project_path;
     this.workflow_string_ = fs.readFileSync(this.template_path_, "utf8");
     this.replaceAll(JSON.parse(this.parameters_));
-    this.makeDirectory(this.project_path_+"/.github")
-    this.makeDirectory(this.project_path_+"/.github/workflows")
+    this.makeDirectory(this.project_path_ + "/.github");
+    this.makeDirectory(this.project_path_ + "/.github/workflows");
   }
 }
