@@ -1,4 +1,4 @@
-name: example_workflow
+name: $parameter.action-name
 
 on:
   schedule:
